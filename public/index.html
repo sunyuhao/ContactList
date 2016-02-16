@@ -1,0 +1,61 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="ContactList">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>ContactList</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#contact-list 			{ margin-bottom:30px; }
+		#contact-form 	 		{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="controller.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL contactS WITH INITIALIZE FUNCTION -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND contact COUNT -->
+		<div class="jumbotron text-center">
+			<h1>ContactList </h1>
+		</div>
+
+		<table class="table">
+		<thead>
+		<tr>
+		<th>Name</th>		
+		<th>Number</th>
+		<th>Action</th>
+		<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<td><input class="form-control" ng-model="contact.name"></td>
+		<td><input class="form-control" ng-model="contact.number"></td>
+		<td><button class="btn btn-primary" ng-click="createContact()">Add contact</button></td>
+		<td><button class="btn btn-info" ng-click="changeContact()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td>
+		</tr>
+		<tr ng-repeat="contact in contacts">
+		<td>{{contact.name}}</td>
+		<td>{{contact.number}}</td>
+		
+		<td><button class="btn btn-danger" ng-click="deleteContact(contact._id)">Remove</button></td>
+		<td><button class="btn btn-warning" ng-click="editContact(contact._id)">Edit</button></td>
+		</tr>
+	</tbody>
+	</table>
+</body>
+</html>
